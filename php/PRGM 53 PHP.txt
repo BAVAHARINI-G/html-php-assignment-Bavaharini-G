@@ -1,0 +1,63 @@
+<?php
+
+// Original numeric array
+$numbers = [10, 20, 30, 40, 50];
+
+echo "Original Array:\n";
+print_r($numbers);
+
+// Use array_pop() - removes the **last** element
+$popped = array_pop($numbers);
+echo "\nAfter array_pop():\n";
+echo "Popped value: $popped\n";
+print_r($numbers);
+
+// Reset the array
+$numbers = [10, 20, 30, 40, 50];
+
+// Use array_shift() - removes the **first** element
+$shifted = array_shift($numbers);
+echo "\nAfter array_shift():\n";
+echo "Shifted value: $shifted\n";
+print_r($numbers);
+
+?>
+
+
+OUTPUT:
+
+Original Array:
+Array
+(
+    [0] => 10
+    [1] => 20
+    [2] => 30
+    [3] => 40
+    [4] => 50
+)
+
+After array_pop():
+Popped value: 50
+Array
+(
+    [0] => 10
+    [1] => 20
+    [2] => 30
+    [3] => 40
+)
+
+After array_shift():
+Shifted value: 10
+Array
+(
+    [0] => 20
+    [1] => 30
+    [2] => 40
+    [3] => 50
+)
+
+
+🔍 Explanation
+Function	What it does	Removed Value	Resulting Array
+array_pop()	Removes last element	50	[10, 20, 30, 40]
+array_shift()	Removes first element	10	[20, 30, 40, 50]

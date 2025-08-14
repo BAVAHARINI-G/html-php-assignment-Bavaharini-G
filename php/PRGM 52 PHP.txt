@@ -1,0 +1,106 @@
+🔄 1. What is a Stack?
+
+A stack is a Last-In-First-Out (LIFO) data structure.
+Think of a stack of plates — you push a new one on top and pop the top one off.
+
+🔹 Common Stack Operations:
+
+array_push() – adds an element to the end (top of stack).
+
+array_pop() – removes the last element (top of stack).
+
+✅ Stack Example in PHP (LIFO)
+
+
+<?php
+$stack = [];  // Empty stack
+
+// Push elements onto the stack
+array_push($stack, "A");
+array_push($stack, "B");
+array_push($stack, "C");
+
+echo "Stack after pushes:\n";
+print_r($stack);
+
+// Pop an element from the stack
+$popped = array_pop($stack);
+echo "Popped element: $popped\n";
+
+echo "Stack after pop:\n";
+print_r($stack);
+?>
+
+
+OUTPUT:
+
+Stack after pushes:
+Array
+(
+    [0] => A
+    [1] => B
+    [2] => C
+)
+Popped element: C
+Stack after pop:
+Array
+(
+    [0] => A
+    [1] => B
+)
+
+
+
+🔁 2. What is a Queue?
+
+A queue is a First-In-First-Out (FIFO) data structure.
+Think of people standing in a line — the first person in is the first one out.
+
+🔹 Common Queue Operations:
+
+array_push() – adds an element to the end of the queue (enqueue).
+
+array_shift() – removes the first element from the queue (dequeue).
+
+✅ Queue Example in PHP (FIFO)
+
+
+<?php
+$queue = [];  // Empty queue
+
+// Enqueue elements
+array_push($queue, "A");
+array_push($queue, "B");
+array_push($queue, "C");
+
+echo "Queue after enqueues:\n";
+print_r($queue);
+
+// Dequeue an element
+$dequeued = array_shift($queue);
+echo "Dequeued element: $dequeued\n";
+
+echo "Queue after dequeue:\n";
+print_r($queue);
+?>
+
+
+OUTPUT:
+
+Queue after enqueues:
+Array
+(
+    [0] => A
+    [1] => B
+    [2] => C
+)
+Dequeued element: A
+Queue after dequeue:
+Array
+(
+    [0] => B
+    [1] => C
+)
+
+
+

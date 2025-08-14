@@ -1,0 +1,46 @@
+🔁 Difference Between array_shift() and array_unshift()
+Function	Description	Return Value	Changes to Array
+array_shift()	Removes the first element from an array	Returns the removed element	Array becomes shorter
+array_unshift()	Adds one or more elements to the beginning of array	Returns the new number of elements	Array becomes longer
+
+
+ARRAY_SHIFT PRGM:
+<?php
+$fruits = ["apple", "banana", "cherry"];
+$firstFruit = array_shift($fruits);
+
+echo "Removed: $firstFruit\n";
+print_r($fruits);
+?>
+
+
+OUTPUT:
+
+Removed: apple
+Array
+(
+    [0] => banana
+    [1] => cherry
+)
+
+
+ARRAY_UNSHIFT:
+
+<?php
+$fruits = ["banana", "cherry"];
+$newCount = array_unshift($fruits, "apple");
+
+echo "New count: $newCount\n";
+print_r($fruits);
+?>
+
+
+OUTPUT:
+
+New count: 3
+Array
+(
+    [0] => apple
+    [1] => banana
+    [2] => cherry
+)

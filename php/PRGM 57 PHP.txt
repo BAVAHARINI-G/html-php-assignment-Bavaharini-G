@@ -1,0 +1,91 @@
+✅ What is a Regular Expression?
+
+A Regular Expression (RegEx) is a pattern used to match, search, or manipulate strings.
+In PHP, RegEx is typically used with functions like:
+
+preg_match() – to check if a pattern exists.
+
+preg_match_all() – to find all matches.
+
+preg_replace() – to search and replace.
+
+preg_split() – to split a string using a pattern.
+
+🔤 Basic RegEx Syntax
+| Symbol | Meaning                             | Example                               |       |                              |
+| ------ | ----------------------------------- | ------------------------------------- | ----- | ---------------------------- |
+| `.`    | Any single character except newline | `a.b` matches "acb", "a\_b"           |       |                              |
+| `^`    | Start of string                     | `^Hello` matches "Hello World"        |       |                              |
+| `$`    | End of string                       | `World$` matches "Hello World"        |       |                              |
+| `[]`   | Character class                     | `[aeiou]` matches any vowel           |       |                              |
+| `[^]`  | Negated character class             | `[^0-9]` matches non-digits           |       |                              |
+| `*`    | 0 or more repetitions               | `a*` matches "", "a", "aaa"           |       |                              |
+| `+`    | 1 or more repetitions               | `a+` matches "a", "aa"                |       |                              |
+| `?`    | 0 or 1 repetition (optional)        | `colou?r` matches "color" or "colour" |       |                              |
+| `{n}`  | Exactly n repetitions               | `\d{3}` matches 3 digits              |       |                              |
+| \`     | \`                                  | Alternation (OR)                      | \`cat | dog\` matches "cat" or "dog" |
+| `()`   | Grouping                            | `(ab)+` matches "ab", "abab", etc.    |       |                              |
+| `\d`   | Digit (0-9)                         | `\d+` matches numbers                 |       |                              |
+| `\w`   | Word character (A-Z, a-z, 0-9, \_)  | `\w+` matches words                   |       |                              |
+| `\s`   | Whitespace                          | `\s+` matches spaces or tabs          |       |                              |
+
+
+EG :
+
+<?php
+// Sample text
+$text = "Contact us at support@example.com or sales@example.org. Visit our website at https://www.example.com.";
+
+// 1. preg_match() - Check if email exists in the text
+if (preg_match("/\b[\w.-]+@[\w.-]+\.\w{2,6}\b/", $text, $match)) {
+    echo "Email found: " . $match[0] . "\n";
+} else {
+    echo "No email found.\n";
+}
+
+// 2. preg_replace() - Replace all URLs with [URL REDACTED]
+$cleanText = preg_replace("/https?:\/\/[\w.-]+(?:\.[\w.-]+)+(?:\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?/", "[URL REDACTED]", $text);
+echo "\nAfter URL redaction:\n" . $cleanText . "\n";
+
+// 3. preg_match_all() - Extract all email addresses
+preg_match_all("/\b[\w.-]+@[\w.-]+\.\w{2,6}\b/", $text, $emails);
+echo "\nAll emails found:\n";
+print_r($emails[0]);
+
+// 4. preg_split() - Split string by space or punctuation
+$words = preg_split("/[\s,.]+/", $text, -1, PREG_SPLIT_NO_EMPTY);
+echo "\nWords extracted:\n";
+print_r($words);
+
+?>
+
+
+OUTPUT:
+
+Email found: support@example.com
+
+After URL redaction:
+Contact us at support@example.com or sales@example.org. Visit our website at [URL REDACTED].
+
+All emails found:
+Array
+(
+    [0] => support@example.com
+    [1] => sales@example.org
+)
+
+Words extracted:
+Array
+(
+    [0] => Contact
+    [1] => us
+    [2] => at
+    [3] => support@example.com
+    [4] => or
+    [5] => sales@example.org
+    [6] => Visit
+    [7] => our
+    [8] => website
+    [9] => at
+    [10] => https://www.example.com
+)

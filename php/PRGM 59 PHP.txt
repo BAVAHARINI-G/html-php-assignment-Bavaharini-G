@@ -1,0 +1,21 @@
+<?php
+function calculateAverage(array $numbers) {
+    // Check if array is empty to avoid division by zero
+    if (count($numbers) === 0) {
+        return 0; // or you can handle this case differently
+    }
+    
+    $sum = array_sum($numbers);
+    $average = $sum / count($numbers);
+    return $average;
+}
+
+// Example usage:
+$nums = [10, 20, 30, 40, 50];
+echo "Average value: " . calculateAverage($nums);
+?>
+
+
+OUTPUT:
+
+Average value: 30

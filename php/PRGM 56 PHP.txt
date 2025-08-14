@@ -1,0 +1,105 @@
+🧩 PHP Array Sorting Functions
+🔹 1. sort()
+
+Sorts indexed arrays in ascending order
+
+Re-indexes keys (numeric)
+
+sort($array);
+
+🔹 2. rsort()
+
+Sorts indexed arrays in descending order
+
+Re-indexes keys
+
+rsort($array);
+
+🔹 3. asort()
+
+Sorts associative arrays by values in ascending order
+
+Maintains key association
+
+asort($array);
+
+🔹 4. arsort()
+
+Sorts associative arrays by values in descending order
+
+Maintains key association
+
+arsort($array);
+
+🔹 5. ksort()
+
+Sorts associative arrays by keys in ascending order
+
+ksort($array);
+
+🔹 6. krsort()
+
+Sorts associative arrays by keys in descending order
+
+krsort($array);
+
+🔹 7. usort()
+
+Sorts indexed arrays using a user-defined comparison function
+
+Re-indexes keys
+
+usort($array, 'customFunction');
+
+🔹 8. uasort()
+
+Sorts associative arrays by values using a custom function
+
+Maintains key association
+
+uasort($array, 'customFunction');
+
+🔹 9. uksort()
+
+Sorts associative arrays by keys using a custom function
+
+uksort($array, 'customFunction');
+
+🔹 10. natsort()
+
+Natural order sorting (e.g., file1, file2, file10)
+
+Maintains key association
+
+natsort($array);
+
+🔹 11. natcasesort()
+
+Case-insensitive version of natsort()
+
+natcasesort($array);
+
+🔹 12. array_multisort()
+
+Sorts multiple arrays or a multidimensional array
+
+array_multisort($array1, SORT_ASC, $array2);
+
+🔹 13. localeCompare() (via setlocale() + strcoll() with usort())
+
+Allows locale-aware sorting (e.g., UTF-8 sorting in different languages)
+
+✅ Quick Summary Table
+Function	              Sorts By	          Order 	Maintains Keys	    Custom Sort
+sort()	                       Value	        Ascending	       ❌	        ❌
+rsort()                        Value     	Descending	       ❌       	❌
+asort()	                       Value     	Ascending	       ✅	        ❌
+arsort()	               Value	        Descending	       ✅	        ❌
+ksort()	                       Key	        Ascending	       ✅	        ❌
+krsort()	               Key	        Descending	       ✅	        ❌
+usort()	                       Value	         Custom	               ❌       	✅
+uasort()	               Value	         Custom                ✅	        ✅
+uksort()	               Key	         Custom	               ✅	        ✅
+natsort()	              Value	         Natural	       ✅         	❌
+natcasesort()	              Value	       Natural (CI)	       ✅	        ❌
+array_multisort()	 Multiple Arrays	Custom	            ❌ / ✅	        ✅

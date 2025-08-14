@@ -1,0 +1,70 @@
+array_push() – to enqueue a person (add them to the end of the queue).
+
+array_shift() – to dequeue a person (serve the next person in line).
+
+🎟️ PHP Ticket Booking Queue Simulation
+
+<?php
+
+// Initialize empty queue
+$ticketQueue = [];
+
+// Enqueue customers (booking requests)
+array_push($ticketQueue, "Alice");
+array_push($ticketQueue, "Bob");
+array_push($ticketQueue, "Charlie");
+array_push($ticketQueue, "David");
+
+echo "Initial Ticket Queue:\n";
+print_r($ticketQueue);
+
+// Serve the first customer (dequeue)
+$servedCustomer = array_shift($ticketQueue);
+echo "\nServing customer: $servedCustomer\n";
+
+// Show updated queue
+echo "\nQueue after serving one customer:\n";
+print_r($ticketQueue);
+
+// Add a new customer
+array_push($ticketQueue, "Eva");
+echo "\nNew customer Eva added to the queue.\n";
+
+// Final state of the queue
+echo "\nFinal Ticket Queue:\n";
+print_r($ticketQueue);
+
+?>
+
+
+OUTPUT:
+
+Initial Ticket Queue:
+Array
+(
+    [0] => Alice
+    [1] => Bob
+    [2] => Charlie
+    [3] => David
+)
+
+Serving customer: Alice
+
+Queue after serving one customer:
+Array
+(
+    [0] => Bob
+    [1] => Charlie
+    [2] => David
+)
+
+New customer Eva added to the queue.
+
+Final Ticket Queue:
+Array
+(
+    [0] => Bob
+    [1] => Charlie
+    [2] => David
+    [3] => Eva
+)
