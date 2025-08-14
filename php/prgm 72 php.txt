@@ -1,0 +1,42 @@
+<?php
+// Start the session
+session_start();
+
+// Step 1: Register session variables (equivalent to session_register)
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = "john_doe";
+    $_SESSION['role'] = "admin";
+    echo "✅ Session variables set.<br>";
+} else {
+    echo "ℹ️ Session variables already set.<br>";
+    echo "Username: " . $_SESSION['username'] . "<br>";
+    echo "Role: " . $_SESSION['role'] . "<br>";
+}
+
+// Step 2: Clear all session variables (session_unset)
+if (isset($_GET['action']) && $_GET['action'] == 'unset') {
+    session_unset();  // removes all session variables
+    echo "⚠️ All session variables have been unset.<br>";
+}
+
+// Step 3: Destroy the session (session_destroy)
+if (isset($_GET['action']) && $_GET['action'] == 'destroy') {
+    session_destroy();  // destroys the session data
+    echo "❌ Session has been destroyed.<br>";
+}
+?>
+
+<!-- HTML Buttons to test session_unset and session_destroy -->
+<br><a href="?action=unset">Unset Session Variables</a>
+<br><a href="?action=destroy">Destroy Session</a>
+
+
+output:
+
+ Session variables set.<br>
+<!-- HTML Buttons to test session_unset and session_destroy -->
+<br><a href="?action=unset">Unset Session Variables</a>
+<br><a href="?action=destroy">Destroy Session</a>
+
+
+=== Code Execution Successful ===
