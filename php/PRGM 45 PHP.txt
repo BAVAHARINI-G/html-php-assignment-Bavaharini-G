@@ -1,0 +1,58 @@
+<?php
+function multidimensionalArrayDiff($array1, $array2) {
+    $result = [];
+
+    foreach ($array1 as $key => $value) {
+        // If key doesn't exist in array2, add to result
+        if (!array_key_exists($key, $array2)) {
+            $result[$key] = $value;
+        } 
+        // If value is an array, recurse
+        elseif (is_array($value) && is_array($array2[$key])) {
+            $diff = multidimensionalArrayDiff($value, $array2[$key]);
+            if (!empty($diff)) {
+                $result[$key] = $diff;
+            }
+        } 
+        // If values are different, add to result
+        elseif ($value !== $array2[$key]) {
+            $result[$key] = $value;
+        }
+    }
+
+    return $result;
+}
+
+// Example arrays
+$array1 = [
+    "name" => "John",
+    "age" => 25,
+    "skills" => ["PHP", "JavaScript", "Python"]
+];
+
+$array2 = [
+    "name" => "John",
+    "age" => 30,
+    "skills" => ["PHP", "JavaScript"]
+];
+
+// Compare arrays
+$diff = multidimensionalArrayDiff($array1, $array2);
+
+// Output result
+echo "<pre>";
+print_r($diff);
+echo "</pre>";
+?>
+
+
+OUTPUT:
+
+Array
+(
+    [age] => 25
+    [skills] => Array
+        (
+            [2] => Python
+        )
+)

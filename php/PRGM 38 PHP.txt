@@ -1,0 +1,44 @@
+Steps to iterate over an array using while loop
+Create an array – Define the array you want to iterate over.
+
+Set the pointer – PHP automatically starts the array pointer at the first element.
+
+Use current() – Retrieves the value at the current pointer position.
+
+Check for false – current() returns false when there are no more elements.
+
+Use key() – Retrieves the key of the current array element (optional).
+
+Move the pointer – Call next() to advance to the next element.
+
+Repeat until the end – The loop continues until current() returns false.
+
+
+
+EXAMPLE:
+
+<?php
+// Step 1: Create an array
+$fruits = array("Apple", "Banana", "Cherry", "Mango");
+
+// Step 2: Iterate with while loop
+while (($value = current($fruits)) !== false) {
+    // Step 3: Get the key (optional)
+    $key = key($fruits);
+
+    // Step 4: Display key and value
+    echo "Key: $key, Value: $value<br>";
+
+    // Step 5: Move the pointer to the next element
+    next($fruits);
+}
+?>
+
+
+OUTPUT:
+
+Key: 0, Value: Apple
+Key: 1, Value: Banana
+Key: 2, Value: Cherry
+Key: 3, Value: Mango
+

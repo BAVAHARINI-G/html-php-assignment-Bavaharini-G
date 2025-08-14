@@ -1,0 +1,17 @@
+<?php
+// Create a 3x3 matrix
+$matrix = array(
+    array(1, 2, 3), // Row 1
+    array(4, 5, 6), // Row 2
+    array(7, 8, 9)  // Row 3
+);
+
+// Access the value in second row, third column
+$value = $matrix[1][2]; // Index starts at 0 → Row 2 = index 1, Column 3 = index 2
+
+// Display the value
+echo "The value in the second row and third column is: $value";
+?>
+OUTPUT:
+
+The value in the second row and third column is: 6

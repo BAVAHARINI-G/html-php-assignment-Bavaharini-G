@@ -1,0 +1,53 @@
+<?php
+// Step 1: Student data
+$students = [
+    ["name" => "John",  "score" => 85],
+    ["name" => "Alice", "score" => 72],
+    ["name" => "Bob",   "score" => 91],
+    ["name" => "Sara",  "score" => 66],
+];
+
+// Step 2: Grade function
+function getGrade($score) {
+    if ($score >= 90) return "A+";
+    elseif ($score >= 80) return "A";
+    elseif ($score >= 70) return "B";
+    elseif ($score >= 60) return "C";
+    else return "F";
+}
+
+// Step 3: Add grades
+$students = array_map(function($student) {
+    $student['grade'] = getGrade($student['score']);
+    return $student;
+}, $students);
+
+// Step 4: Summary calculations
+$scores = array_column($students, 'score');
+$average = array_sum($scores) / count($scores);
+$highest = max($scores);
+$lowest = min($scores);
+
+// Step 5: Output report
+echo "<h3>Student Grades Report</h3>";
+foreach ($students as $student) {
+    echo "Name: {$student['name']} - Score: {$student['score']} - Grade: {$student['grade']}<br>";
+}
+echo "<hr>";
+echo "Average Score: $average<br>";
+echo "Highest Score: $highest<br>";
+echo "Lowest Score: $lowest<br>";
+?>
+
+
+OUTPUT:
+
+<h3>Student Grades Report</h3>
+Name: John - Score: 85 - Grade: A<br>
+Name: Alice - Score: 72 - Grade: B<br>
+Name: Bob - Score: 91 - Grade: A+<br>
+Name: Sara - Score: 66 - Grade: C<br>
+<hr>Average Score: 78.5<br>
+Highest Score: 91<br>
+Lowest Score: 66<br>
+

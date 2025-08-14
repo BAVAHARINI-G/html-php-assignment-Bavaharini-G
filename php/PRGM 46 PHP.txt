@@ -1,0 +1,21 @@
+<?php
+// Sample array
+$fruits = array("Apple", "Banana", "Cherry", "Mango", "Orange");
+
+// Value to search
+$searchValue = "Mango";
+
+// Search for the index
+$index = array_search($searchValue, $fruits);
+
+// Display result
+if ($index !== false) {
+    echo "The value '$searchValue' is found at index: $index";
+} else {
+    echo "The value '$searchValue' is not found in the array.";
+}
+?>
+
+OUTPUT:
+
+The value 'Mango' is found at index: 3

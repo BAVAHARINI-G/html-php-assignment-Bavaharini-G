@@ -1,0 +1,44 @@
+Explanation
+^ → Start of string.
+
+(?=.*[A-Z]) → Must contain at least one uppercase letter.
+
+(?=.*[a-z]) → Must contain at least one lowercase letter.
+
+(?=.*\d) → Must contain at least one digit.
+
+(?=.*[^a-zA-Z\d]) → Must contain at least one special character (anything not letter or digit).
+
+.{8,} → Minimum 8 characters long.
+
+$ → End of string.
+
+PHP Example
+
+<?php
+$passwords = ["Hello@123", "weakpass", "StrongPass1!", "Short1@", "Test#2025"];
+
+$pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/";
+
+foreach ($passwords as $pwd) {
+    if (preg_match($pattern, $pwd)) {
+        echo "$pwd → Valid Password ✅<br>";
+    } else {
+        echo "$pwd → Invalid Password ❌<br>";
+    }
+}
+?>
+
+OUTPUT:
+
+
+Hello@123 → Valid Password ✅
+weakpass → Invalid Password ❌
+StrongPass1! → Valid Password ✅
+Short1@ → Invalid Password ❌
+Test#2025 → Valid Password ✅
+
+
+
+
+

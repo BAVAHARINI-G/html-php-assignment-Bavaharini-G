@@ -1,0 +1,14 @@
+<?php
+// Original string
+$text = "PHP is great. I love learning PHP because PHP is powerful.";
+
+// Replace all occurrences of 'PHP' with 'JavaScript'
+$result = preg_replace("/PHP/", "JavaScript", $text);
+
+// Display the result
+echo $result;
+?>
+
+OUTPUT:
+
+JavaScript is great. I love learning JavaScript because JavaScript is powerful.

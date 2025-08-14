@@ -1,0 +1,102 @@
+<?php
+// Initial playlist data
+$playlists = [
+    "Chill Vibes" => [
+        ["title" => "Ocean Eyes", "artist" => "Billie Eilish", "duration" => "3:20"],
+        ["title" => "Sunflower", "artist" => "Post Malone", "duration" => "2:38"]
+    ],
+    "Workout Mix" => [
+        ["title" => "Stronger", "artist" => "Kanye West", "duration" => "5:12"]
+    ]
+];
+
+// 1. Create a new playlist
+function createPlaylist(&$playlists, $name) {
+    if (!isset($playlists[$name])) {
+        $playlists[$name] = [];
+        echo "✅ Playlist '$name' created.<br>";
+    } else {
+        echo "⚠️ Playlist '$name' already exists.<br>";
+    }
+}
+
+// 2. Add a song to a playlist
+function addSong(&$playlists, $playlistName, $title, $artist, $duration) {
+    if (isset($playlists[$playlistName])) {
+        $playlists[$playlistName][] = [
+            "title" => $title,
+            "artist" => $artist,
+            "duration" => $duration
+        ];
+        echo "🎵 Song '$title' added to '$playlistName'.<br>";
+    } else {
+        echo "❌ Playlist '$playlistName' not found.<br>";
+    }
+}
+
+// 3. Remove a song from a playlist
+function removeSong(&$playlists, $playlistName, $title) {
+    if (isset($playlists[$playlistName])) {
+        $playlists[$playlistName] = array_filter(
+            $playlists[$playlistName],
+            function($song) use ($title) {
+                return strtolower($song["title"]) !== strtolower($title);
+            }
+        );
+        echo "🗑️ Song '$title' removed from '$playlistName'.<br>";
+    } else {
+        echo "❌ Playlist '$playlistName' not found.<br>";
+    }
+}
+
+// 4. Sort playlist songs
+function sortPlaylist(&$playlists, $playlistName, $sortBy = "title") {
+    if (isset($playlists[$playlistName])) {
+        usort($playlists[$playlistName], function($a, $b) use ($sortBy) {
+            return strcmp($a[$sortBy], $b[$sortBy]);
+        });
+        echo "📑 Playlist '$playlistName' sorted by $sortBy.<br>";
+    } else {
+        echo "❌ Playlist '$playlistName' not found.<br>";
+    }
+}
+
+// 5. Display playlist
+function displayPlaylist($playlists, $playlistName) {
+    if (isset($playlists[$playlistName])) {
+        echo "<h3>🎼 $playlistName</h3>";
+        foreach ($playlists[$playlistName] as $song) {
+            echo "{$song['title']} - {$song['artist']} ({$song['duration']})<br>";
+        }
+    } else {
+        echo "❌ Playlist '$playlistName' not found.<br>";
+    }
+}
+
+// ------------------- Example Usage -------------------
+
+// Create a new playlist
+createPlaylist($playlists, "Road Trip");
+
+// Add songs
+addSong($playlists, "Road Trip", "Blinding Lights", "The Weeknd", "3:20");
+addSong($playlists, "Road Trip", "Levitating", "Dua Lipa", "3:24");
+
+// Remove a song
+removeSong($playlists, "Chill Vibes", "Sunflower");
+
+// Sort playlist by artist
+sortPlaylist($playlists, "Road Trip", "artist");
+
+// Display playlists
+displayPlaylist($playlists, "Road Trip");
+displayPlaylist($playlists, "Chill Vibes");
+?>
+
+
+
+OUTPUT:
+
+laylist 'Road Trip' created.<br>🎵 Song 'Blinding Lights' added to 'Road Trip'.<br>🎵 Song 'Levitating' added to 'Road Trip'.<br>🗑️ Song 'Sunflower' removed from 'Chill Vibes'.<br>📑 Playlist 'Road Trip' sorted by artist.<br><h3>🎼 Road Trip</h3>Levitating - Dua Lipa (3:24)<br>Blinding Lights - The Weeknd (3:20)<br><h3>🎼 Chill Vibes</h3>Ocean Eyes - Billie Eilish (3:20)<br>
+
+=== Code Execution Successful ===

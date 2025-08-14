@@ -1,0 +1,16 @@
+<?php
+$fruits = ["apple", "banana", "cherry"];
+
+// Remove the first element
+array_shift($fruits);
+
+print_r($fruits);
+?>
+
+
+OUTPUT:
+Array
+(
+    [0] => banana
+    [1] => cherry
+)

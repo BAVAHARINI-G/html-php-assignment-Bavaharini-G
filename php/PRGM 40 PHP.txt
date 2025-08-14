@@ -1,0 +1,23 @@
+<?php
+// Original string
+$text = "Hello@# World!! 1234 ^&*(PHP)";
+
+// Convert string to an array of characters
+$chars = str_split($text);
+
+// Filter array: keep only a-z, A-Z, 0-9, and space
+$filtered = array_filter($chars, function($char) {
+    return preg_match("/[a-zA-Z0-9 ]/", $char);
+});
+
+// Join the filtered characters back into a string
+$result = implode("", $filtered);
+
+// Output
+echo "Original: $text<br>";
+echo "Cleaned: $result";
+?>
+
+OUTPUT:
+Original: Hello@# World!! 1234 ^&*(PHP)
+Cleaned: Hello World 1234 PHP
