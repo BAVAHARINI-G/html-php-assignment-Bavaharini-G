@@ -1,0 +1,50 @@
+<!-- save this as input_array.php and run on a local server like XAMPP -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Sequence Input</title>
+</head>
+<body>
+
+<h3>Enter a sequence of numbers (comma separated):</h3>
+
+<form method="post">
+    <input type="text" name="numbers" placeholder="e.g. 10, 20, 30, 40">
+    <input type="submit" value="Submit">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get input and remove spaces
+    $input = str_replace(' ', '', $_POST['numbers']);
+    
+    // Convert to array using explode
+    $numberArray = explode(',', $input);
+
+    // Validate and convert strings to integers
+    $numberArray = array_map('intval', $numberArray);
+
+    echo "<h4>Stored Numbers in Array:</h4>";
+    echo "<pre>";
+    print_r($numberArray);
+    echo "</pre>";
+}
+?>
+
+</body>
+</html>
+
+
+OUTPUT:
+
+10, 20, 30, 40
+
+Stored Numbers in Array:
+Array
+(
+    [0] => 10
+    [1] => 20
+    [2] => 30
+    [3] => 40
+)
+
