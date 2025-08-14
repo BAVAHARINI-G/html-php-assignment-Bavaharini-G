@@ -1,0 +1,68 @@
+<!-- Save this as upload.php and run on a PHP-enabled server -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload JPG or PNG</title>
+</head>
+<body>
+
+<h2>Upload an Image (JPG or PNG only)</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="imageFile" required>
+    <input type="submit" name="submit" value="Upload">
+</form>
+
+<?php
+if (isset($_POST['submit'])) {
+    if (isset($_FILES['imageFile'])) {
+        $fileName = $_FILES['imageFile']['name'];
+        $fileTmp = $_FILES['imageFile']['tmp_name'];
+        $fileType = $_FILES['imageFile']['type'];
+
+        // Allowed MIME types
+        $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+
+        // Check file type
+        if (in_array($fileType, $allowedTypes)) {
+            // Move uploaded file to uploads folder (make sure folder exists and writable)
+            $uploadDir = "uploads/";
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+            $targetFile = $uploadDir . basename($fileName);
+
+            if (move_uploaded_file($fileTmp, $targetFile)) {
+                echo "<p style='color:green;'>File uploaded successfully: $fileName</p>";
+            } else {
+                echo "<p style='color:red;'>Error uploading the file.</p>";
+            }
+        } else {
+            echo "<p style='color:red;'>Error: Only JPG and PNG files are allowed!</p>";
+        }
+    } else {
+        echo "<p style='color:red;'>No file was uploaded.</p>";
+    }
+}
+?>
+
+</body>
+</html>
+
+OUTPUT:
+
+Upload an Image (JPG or PNG only)
+Select image to upload: No file chosen 
+File uploaded successfully: $fileName
+"; } else { echo "
+Error uploading the file.
+
+"; } } else { echo "
+Error: Only JPG and PNG files are allowed!
+
+"; } } else { echo "
+No file was uploaded.
+
+"; } } ?>
